@@ -12,13 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Description:
  */
 @Component
-public class CustomWebMVCAdapter extends WebMvcConfigurerAdapter {
+public class CustomWebMvcAdapter extends WebMvcConfigurerAdapter {
 
     @Autowired
     private JWTInterceptor jwtInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sys/user/login");
+//        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sys/user/login");
     }
 }

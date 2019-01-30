@@ -11,7 +11,7 @@ public class SaasHrmApplicationTests {
 
     @Test
     public void contextLoads() {
-    }
 
+    }
 }
 
