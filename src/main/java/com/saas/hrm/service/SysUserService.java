@@ -9,11 +9,10 @@ import com.saas.hrm.mapper.SysUserMapper;
 import com.saas.hrm.response.ResultEnum;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
 import java.util.*;
 
 /**
@@ -30,6 +29,9 @@ public class SysUserService {
     @Autowired
     private SysRoleService sysRoleService;
 
+    @Value("${jwt.sign.key}")
+    private String key;
+
     public String login(SysUserDTO sysUserDTO) {
         SysUser sysUser = new SysUser();
         sysUser.setUsername(sysUserDTO.getUsername());
@@ -43,7 +45,6 @@ public class SysUserService {
             throw new CustomException(ResultEnum.PASSWORD_ERROR.getCode(),
                     ResultEnum.PASSWORD_ERROR.getMessage());
         }
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         Map<String,Object> map = new HashMap<>();
         List<String> menu = new ArrayList<>();
         List<String> point = new ArrayList<>();
@@ -70,7 +71,7 @@ public class SysUserService {
                 .builder()
                 .setSubject(sysUserDTO.getUsername())
                 .setClaims(map)
-                .signWith(key).compact();
+                .signWith(SignatureAlgorithm.HS256,key).compact();
         return jws;
     }
 

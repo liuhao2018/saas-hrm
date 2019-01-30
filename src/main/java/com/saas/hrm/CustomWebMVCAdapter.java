@@ -1,6 +1,7 @@
 package com.saas.hrm;
 
 import com.saas.hrm.interceptor.JWTInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -13,8 +14,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Component
 public class CustomWebMVCAdapter extends WebMvcConfigurerAdapter {
 
+    @Autowired
+    private JWTInterceptor jwtInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new JWTInterceptor()).addPathPatterns("/**").excludePathPatterns("/sys/user/login");
+        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sys/user/login");
     }
 }

@@ -9,6 +9,5 @@ public class SaasHrmApplication {
     public static void main(String[] args) {
         SpringApplication.run(SaasHrmApplication.class, args);
     }
-
 }
 
