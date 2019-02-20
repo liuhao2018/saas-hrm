@@ -19,6 +19,6 @@ public class CustomWebMVCAdapter extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sys/user/login");
+        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/sys/user/login","/employee/**");
     }
 }
