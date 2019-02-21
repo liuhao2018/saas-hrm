@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Description:
  */
 @Component
-public class CustomWebMVCAdapter extends WebMvcConfigurerAdapter {
+public class CustomWebMvcAdapter extends WebMvcConfigurerAdapter {
 
     @Autowired
     private JWTInterceptor jwtInterceptor;
